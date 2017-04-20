@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EtablissementViewDlg" widgetVar="EtablissementViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEtablissementTitle}">
+            <h:form id="EtablissementViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{etablissementController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEtablissementLabel_nauto}"/>
+                        <h:outputText value="#{etablissementController.selected.nauto}" title="#{bundle.ViewEtablissementTitle_nauto}"/>
+                        <h:outputText value="#{bundle.ViewEtablissementLabel_nom}"/>
+                        <h:outputText value="#{etablissementController.selected.nom}" title="#{bundle.ViewEtablissementTitle_nom}"/>
+                        <h:outputText value="#{bundle.ViewEtablissementLabel_adresse}"/>
+                        <h:outputText value="#{etablissementController.selected.adresse}" title="#{bundle.ViewEtablissementTitle_adresse}"/>
+                        <h:outputText value="#{bundle.ViewEtablissementLabel_complement}"/>
+                        <h:outputText value="#{etablissementController.selected.complement}" title="#{bundle.ViewEtablissementTitle_complement}"/>
+                        <h:outputText value="#{bundle.ViewEtablissementLabel_codeINSEE}"/>
+                        <h:outputText value="#{etablissementController.selected.codeINSEE}" title="#{bundle.ViewEtablissementTitle_codeINSEE}"/>
+                        <h:outputText value="#{bundle.ViewEtablissementLabel_commune}"/>
+                        <h:outputText value="#{etablissementController.selected.commune}" title="#{bundle.ViewEtablissementTitle_commune}"/>
+                        <h:outputText value="#{bundle.ViewEtablissementLabel_regionAdministrative}"/>
+                        <h:outputText value="#{etablissementController.selected.regionAdministrative}" title="#{bundle.ViewEtablissementTitle_regionAdministrative}"/>
+                        <h:outputText value="#{bundle.ViewEtablissementLabel_geoBan}"/>
+                        <h:outputText value="#{etablissementController.selected.geoBan}" title="#{bundle.ViewEtablissementTitle_geoBan}"/>
+                        <h:outputText value="#{bundle.ViewEtablissementLabel_geoInsee}"/>
+                        <h:outputText value="#{etablissementController.selected.geoInsee}" title="#{bundle.ViewEtablissementTitle_geoInsee}"/>
+                        <h:outputText value="#{bundle.ViewEtablissementLabel_corrdonneesFinales}"/>
+                        <h:outputText value="#{etablissementController.selected.corrdonneesFinales}" title="#{bundle.ViewEtablissementTitle_corrdonneesFinales}"/>
+                               </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EtablissementViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

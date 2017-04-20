@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <ui:composition template="/templateadmin.xhtml">
+        
+         <ui:define name="title">
+             <h:outputText value="Bienvenue à la Planète des Films : #{loginBeanAdmin.admin.email}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <center>
+        <div id="slider">
+  <figure>
+      <img src="http://84.246.228.15/wp-content/uploads/2013/11/tournages-0156.jpg"  />
+    <img src="https://www.aucoeurdelimmo.com/img/actu/photo_429x332/2015-02/2015-02-04/ville_paris_cinema.jpg"  />
+    <img src="http://www.ciup.fr/wp-content/uploads/2013/10/tournage-cite-m6-984x500.jpg" />
+    <img src="http://culturebox.francetvinfo.fr/sites/default/files/assets/images/2016/08/maxnewsspecial065146.jpg"  />
+  </figure>
+            </div>
+                </center>
+        </ui:define>
+
+
+    </ui:composition>    
+    
+  
+</html>
+

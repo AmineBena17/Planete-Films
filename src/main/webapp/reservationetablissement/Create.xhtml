@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReservationetablissementCreateDlg" widgetVar="ReservationetablissementCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateReservationetablissementTitle}">
+            <h:form id="ReservationetablissementCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{reservationetablissementController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateReservationetablissementLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{reservationetablissementController.selected.id}" title="#{bundle.CreateReservationetablissementTitle_id}" required="true" requiredMessage="#{bundle.CreateReservationetablissementRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateReservationetablissementLabel_date}" for="date" />
+                        <p:calendar id="date" pattern="MM/dd/yyyy HH:mm:ss" value="#{reservationetablissementController.selected.date}" title="#{bundle.EditReservationetablissementTitle_date}" required="true" requiredMessage="#{bundle.EditReservationetablissementRequiredMessage_date}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateReservationetablissementLabel_etablissement}" for="etablissement" />
+                        <p:inputText id="etablissement" value="#{reservationetablissementController.selected.etablissement}" title="#{bundle.CreateReservationetablissementTitle_etablissement}" required="true" requiredMessage="#{bundle.CreateReservationetablissementRequiredMessage_etablissement}"/>
+                        <p:outputLabel value="#{bundle.CreateReservationetablissementLabel_prix}" for="prix" />
+                        <p:inputText id="prix" value="#{reservationetablissementController.selected.prix}" title="#{bundle.CreateReservationetablissementTitle_prix}" required="true" requiredMessage="#{bundle.CreateReservationetablissementRequiredMessage_prix}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{reservationetablissementController.create}" value="#{bundle.Save}" update="display,:ReservationetablissementListForm:datalist,:growl" oncomplete="handleSubmit(args,'ReservationetablissementCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ReservationetablissementCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

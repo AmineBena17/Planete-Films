@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+       <h:outputStylesheet name="css/navigation.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+    </h:head>
+
+    <h:body>
+
+        <p:growl id="growl" life="3000" />
+
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="220">
+                
+                <h:form id="menuForm">
+                    <center><img src="http://i.imgur.com/Mc0A3cR.png" height="120"/></center>
+                    <br/>
+	<ul class="nav">
+            <li><h:link value="Accueil" outcome="/home"/></li>
+		<li><h:link value="Les Films" outcome="/interfacesuser/listefilms"/></li>
+		<li><h:link value="Les Scènes" outcome="/interfacesuser/listeetab"/></li>
+                 <li><h:link value="Liste des Réservations" outcome="/interfacesuser/reserv"/></li>
+                <li><h:link value="Historique de recherche" outcome="/historiqueuser/List"/></li>
+                <li><h:commandLink value="Se déconnecter" action="#{loginBean.logout()}"/></li>
+	</ul>
+                       <br/>
+             
+                    <div class="bien">Bienvenue  #{loginBean.user.email} : Utilisateur</div>
+             <br/>
+          
+                </h:form>
+
+
+            </p:layoutUnit>
+
+
+            <p:layoutUnit position="south" size="80">
+                <center><div class="south-form">Copyright : LAZAR Mohammed Amine et SEMLALI Karam</div></center>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+
+    
+                <ui:insert name="body"/>
+                
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+
+</html>

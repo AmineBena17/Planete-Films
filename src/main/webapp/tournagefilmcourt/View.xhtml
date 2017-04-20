@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TournagefilmcourtViewDlg" widgetVar="TournagefilmcourtViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTournagefilmcourtTitle}">
+            <h:form id="TournagefilmcourtViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tournagefilmcourtController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTournagefilmcourtLabel_titre}"/>
+                        <h:outputText value="#{tournagefilmcourtController.selected.titre}" title="#{bundle.ViewTournagefilmcourtTitle_titre}"/>
+                        <h:outputText value="#{bundle.ViewTournagefilmcourtLabel_realisateur}"/>
+                        <h:outputText value="#{tournagefilmcourtController.selected.realisateur}" title="#{bundle.ViewTournagefilmcourtTitle_realisateur}"/>
+                        <h:outputText value="#{bundle.ViewTournagefilmcourtLabel_dateDebutEvenement}"/>
+                        <h:outputText value="#{tournagefilmcourtController.selected.dateDebutEvenement}" title="#{bundle.ViewTournagefilmcourtTitle_dateDebutEvenement}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTournagefilmcourtLabel_dateFinEvenement}"/>
+                        <h:outputText value="#{tournagefilmcourtController.selected.dateFinEvenement}" title="#{bundle.ViewTournagefilmcourtTitle_dateFinEvenement}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTournagefilmcourtLabel_cadre}"/>
+                        <h:outputText value="#{tournagefilmcourtController.selected.cadre}" title="#{bundle.ViewTournagefilmcourtTitle_cadre}"/>
+                        <h:outputText value="#{bundle.ViewTournagefilmcourtLabel_lieu}"/>
+                        <h:outputText value="#{tournagefilmcourtController.selected.lieu}" title="#{bundle.ViewTournagefilmcourtTitle_lieu}"/>
+                        <h:outputText value="#{bundle.ViewTournagefilmcourtLabel_adresse}"/>
+                        <h:outputText value="#{tournagefilmcourtController.selected.adresse}" title="#{bundle.ViewTournagefilmcourtTitle_adresse}"/>
+                        <h:outputText value="#{bundle.ViewTournagefilmcourtLabel_arrondissement}"/>
+                        <h:outputText value="#{tournagefilmcourtController.selected.arrondissement}" title="#{bundle.ViewTournagefilmcourtTitle_arrondissement}"/>
+                        <h:outputText value="#{bundle.ViewTournagefilmcourtLabel_adresseComplete}"/>
+                        <h:outputText value="#{tournagefilmcourtController.selected.adresseComplete}" title="#{bundle.ViewTournagefilmcourtTitle_adresseComplete}"/>
+                        <h:outputText value="#{bundle.ViewTournagefilmcourtLabel_geoCoordinates}"/>
+                        <h:outputText value="#{tournagefilmcourtController.selected.geoCoordinates}" title="#{bundle.ViewTournagefilmcourtTitle_geoCoordinates}"/>
+                        <h:outputText value="#{bundle.ViewTournagefilmcourtLabel_idTournagefilm}"/>
+                        <h:outputText value="#{tournagefilmcourtController.selected.idTournagefilm}" title="#{bundle.ViewTournagefilmcourtTitle_idTournagefilm}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TournagefilmcourtViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

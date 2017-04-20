@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EtablissementEditDlg" widgetVar="EtablissementEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEtablissementTitle}">
+            <h:form id="EtablissementEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{etablissementController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEtablissementLabel_nauto}" for="nauto" />
+                        <p:inputText id="nauto" disabled="true" value="#{etablissementController.selected.nauto}" title="#{bundle.EditEtablissementTitle_nauto}" />
+                        <p:outputLabel value="#{bundle.EditEtablissementLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{etablissementController.selected.nom}" title="#{bundle.EditEtablissementTitle_nom}" required="true" requiredMessage="#{bundle.EditEtablissementRequiredMessage_nom}"/>
+                        <p:outputLabel value="#{bundle.EditEtablissementLabel_adresse}" for="adresse" />
+                        <p:inputText id="adresse" value="#{etablissementController.selected.adresse}" title="#{bundle.EditEtablissementTitle_adresse}" required="true" requiredMessage="#{bundle.EditEtablissementRequiredMessage_adresse}"/>
+                        <p:outputLabel value="#{bundle.EditEtablissementLabel_complement}" for="complement" />
+                        <p:inputText id="complement" value="#{etablissementController.selected.complement}" title="#{bundle.EditEtablissementTitle_complement}" required="true" requiredMessage="#{bundle.EditEtablissementRequiredMessage_complement}"/>
+                        <p:outputLabel value="#{bundle.EditEtablissementLabel_codeINSEE}" for="codeINSEE" />
+                        <p:inputText id="codeINSEE" disabled="true" value="#{etablissementController.selected.codeINSEE}" title="#{bundle.EditEtablissementTitle_codeINSEE}" required="true" requiredMessage="#{bundle.EditEtablissementRequiredMessage_codeINSEE}"/>
+                        <p:outputLabel value="#{bundle.EditEtablissementLabel_commune}" for="commune" />
+                        <p:inputText id="commune" value="#{etablissementController.selected.commune}" title="#{bundle.EditEtablissementTitle_commune}" required="true" requiredMessage="#{bundle.EditEtablissementRequiredMessage_commune}"/>
+                        <p:outputLabel value="#{bundle.EditEtablissementLabel_regionAdministrative}" for="regionAdministrative" />
+                        <p:inputText id="regionAdministrative" value="#{etablissementController.selected.regionAdministrative}" title="#{bundle.EditEtablissementTitle_regionAdministrative}" required="true" requiredMessage="#{bundle.EditEtablissementRequiredMessage_regionAdministrative}"/>
+                        <p:outputLabel value="#{bundle.EditEtablissementLabel_geoBan}" for="geoBan" />
+                        <p:inputText id="geoBan" value="#{etablissementController.selected.geoBan}" title="#{bundle.EditEtablissementTitle_geoBan}" />
+                        <p:outputLabel value="#{bundle.EditEtablissementLabel_geoInsee}" for="geoInsee" />
+                        <p:inputText id="geoInsee" disabled="true" value="#{etablissementController.selected.geoInsee}" title="#{bundle.EditEtablissementTitle_geoInsee}" />
+                        <p:outputLabel value="#{bundle.EditEtablissementLabel_corrdonneesFinales}" for="corrdonneesFinales" />
+                        <p:inputText id="corrdonneesFinales" value="#{etablissementController.selected.corrdonneesFinales}" title="#{bundle.EditEtablissementTitle_corrdonneesFinales}" required="true" requiredMessage="#{bundle.EditEtablissementRequiredMessage_corrdonneesFinales}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{etablissementController.update}" value="#{bundle.Save}" update="display,:EtablissementListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EtablissementEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EtablissementEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReservationtournageCreateDlg" widgetVar="ReservationtournageCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{tournagefilmcourtController.selected.titre}">
+            <h:form id="Reservationtournage">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{reservationtournageController.selected != null}">
+                         <p:outputLabel value="Date et Heure" for="date" />
+                         <p:calendar id="date" pattern="MM/dd/yyyy HH:mm:ss" value="#{reserverFilm.reservationtournage.date}" title="#{bundle.EditReservationtournageTitle_date}" required="true" requiredMessage="#{bundle.EditReservationtournageRequiredMessage_date}" showOn="button"/>
+                        <p:outputLabel value="Titre de Film :" for="lieux" />
+                        <p:selectOneMenu id="lieux" value="#{reserverFilm.reservationtournage.lieux}">
+                             <f:selectItem itemLabel="Select One" itemValue="" />
+                             <f:selectItem itemLabel="#{tournagefilmcourtController.selected.titre}" itemValue="#{tournagefilmcourtController.selected.titre}" />
+                              </p:selectOneMenu>
+                        <p:outputLabel value="Prix" for="prix" />
+                        <p:inputText id="prix" value="#{reserverFilm.reservationtournage.prix}" title="#{bundle.CreateReservationtournageTitle_prix}" required="true" requiredMessage="#{bundle.CreateReservationtournageRequiredMessage_prix}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{reserverFilm.reserverFilm()}" value="Réserver"  oncomplete="handleSubmit(args,'ReservationtournageCreateDialog');"/>
+                    <p:commandButton value="Fermer" onclick="ReservationtournageCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

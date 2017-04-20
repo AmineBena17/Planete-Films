@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/templateuser.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="Planète des Film : Liste des réservations des Scènces"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h2>Liste des réservations des scènes</h2>
+            <h:form id="ReservationetablissementListForm">
+               
+                    <p:dataTable id="datalist" value="#{reservationetablissementController.items}" var="item"
+                                 selectionMode="single" selection="#{reservationetablissementController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+   
+                        <p:ajax event="rowSelect"   update="viewButton"/>
+                        <p:ajax event="rowUnselect" update="viewButton"/>
+                                     <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Numéro de réservation"/>
+                            </f:facet>
+                                         <h:outputText value="#{item.id}"/>
+                        </p:column>
+                <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Scène"/>
+                            </f:facet>
+                            <h:outputText value="#{item.etablissement}"/>
+                        </p:column>
+                       
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Date et Heure"/>
+                            </f:facet>
+                            <h:outputText value="#{item.date}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                       
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Prix à payer"/>
+                            </f:facet>
+                            <h:outputText value="#{item.prix} €"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="Afficher" update=":ReservationetablissementViewForm" oncomplete="PF('ReservationetablissementViewDialog').show()" disabled="#{empty reservationetablissementController.selected}"/>
+                           
+                            <p:button  value="Retour" outcome="/interfacesuser/reserv"/>     
+                        </f:facet>
+                    </p:dataTable>
+   
+            </h:form>
+
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

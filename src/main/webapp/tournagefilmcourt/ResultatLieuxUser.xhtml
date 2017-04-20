@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/templateuser.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="La Planète Des Films : Rechercher un Film"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            
+                       <h:form>
+                    <h3><h:outputText value="Rechercher : "/></h3>
+                    <h3> <h:inputText required="true" value="#{searchBean.tournagefilmcourt.titre}" style="text-transform: uppercase;" /></h3>
+                    <h:commandButton value="Rechercher" action="#{searchBean.chercherTournageUser()}"/>
+            </h:form>
+
+            <f:view>
+
+
+                <h:form>
+                    <h1><h:outputText value="Résultat de la recherche"/></h1>
+                    <p:dataTable value="#{searchBean.list_filmcourt}" var="item"
+                                 selectionMode="single" selection="#{tournagefilmcourtController.selected}"  
+                                 paginator="true"
+                                 rowKey="#{item.titre}"
+                                 rows="5"
+                                 rowsPerPageTemplate="10,20,30,40,50">
+                        
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Titre"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titre}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Réalisateur"/>
+                            </f:facet>
+                            <h:outputText value="#{item.realisateur}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Debut de tournage"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateDebutEvenement}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Fin de tournage"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateFinEvenement}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Cadre"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cadre}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Lieu"/>
+                            </f:facet>
+                            <h:outputText value="#{item.lieu}"/>
+                        </p:column>
+                                               <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Adresse"/>
+                            </f:facet>
+                            <h:outputText value="#{item.adresseComplete}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Arrondissement"/>
+                            </f:facet>
+                            <h:outputText value="#{item.arrondissement}"/>
+                        </p:column>
+                <f:facet name="footer">
+                         <p:button  value="Retour" outcome="/interfacesuser/listefilms"/>
+                           
+                        </f:facet>
+                    </p:dataTable>
+                    
+   
+                </h:form>
+            </f:view>
+
+           
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReservationtournageCreateDlg" widgetVar="ReservationtournageCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateReservationtournageTitle}">
+            <h:form id="ReservationtournageCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{reservationtournageController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateReservationtournageLabel_idreservationtournage}" for="idreservationtournage" />
+                        <p:inputText id="idreservationtournage" value="#{reservationtournageController.selected.idreservationtournage}" title="#{bundle.CreateReservationtournageTitle_idreservationtournage}" required="true" requiredMessage="#{bundle.CreateReservationtournageRequiredMessage_idreservationtournage}"/>
+                        <p:outputLabel value="#{bundle.CreateReservationtournageLabel_date}" for="date" />
+                        <p:calendar id="date" pattern="MM/dd/yyyy" value="#{reservationtournageController.selected.date}" title="#{bundle.EditReservationtournageTitle_date}" required="true" requiredMessage="#{bundle.EditReservationtournageRequiredMessage_date}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateReservationtournageLabel_lieux}" for="lieux" />
+                        <p:inputText id="lieux" value="#{reservationtournageController.selected.lieux}" title="#{bundle.CreateReservationtournageTitle_lieux}" required="true" requiredMessage="#{bundle.CreateReservationtournageRequiredMessage_lieux}"/>
+                        <p:outputLabel value="#{bundle.CreateReservationtournageLabel_prix}" for="prix" />
+                        <p:inputText id="prix" value="#{reservationtournageController.selected.prix}" title="#{bundle.CreateReservationtournageTitle_prix}" required="true" requiredMessage="#{bundle.CreateReservationtournageRequiredMessage_prix}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{reservationtournageController.create}" value="#{bundle.Save}" update="display,:ReservationtournageListForm:datalist,:growl" oncomplete="handleSubmit(args,'ReservationtournageCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ReservationtournageCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

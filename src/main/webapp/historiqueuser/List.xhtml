@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/templateuser.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="La Planète Des Films : Historique de Recherche"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="HistoriqueuserListForm">
+              
+                    <p:dataTable id="datalist" value="#{historiqueuserController.items}" var="item"
+                                 selectionMode="single" selection="#{historiqueuserController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idhistouser}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="viewButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="viewButton deleteButton"/>
+
+                  
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHistoriqueuserTitle_motrecherche}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.motrecherche}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHistoriqueuserTitle_date}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.date}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":HistoriqueuserViewForm" oncomplete="PF('HistoriqueuserViewDialog').show()" disabled="#{empty historiqueuserController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{historiqueuserController.destroy}" update=":growl,datalist" disabled="#{empty historiqueuserController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+
+            </h:form>
+
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

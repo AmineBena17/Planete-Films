@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TournagefilmcourtEditDlg" widgetVar="TournagefilmcourtEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTournagefilmcourtTitle}">
+            <h:form id="TournagefilmcourtEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tournagefilmcourtController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTournagefilmcourtLabel_titre}" for="titre" />
+                        <p:inputText id="titre" value="#{tournagefilmcourtController.selected.titre}" title="#{bundle.EditTournagefilmcourtTitle_titre}" required="true" requiredMessage="#{bundle.EditTournagefilmcourtRequiredMessage_titre}"/>
+                        <p:outputLabel value="#{bundle.EditTournagefilmcourtLabel_realisateur}" for="realisateur" />
+                        <p:inputText id="realisateur" value="#{tournagefilmcourtController.selected.realisateur}" title="#{bundle.EditTournagefilmcourtTitle_realisateur}" required="true" requiredMessage="#{bundle.EditTournagefilmcourtRequiredMessage_realisateur}"/>
+                        <p:outputLabel value="#{bundle.EditTournagefilmcourtLabel_dateDebutEvenement}" for="dateDebutEvenement" />
+                        <p:calendar id="dateDebutEvenement" pattern="MM/dd/yyyy" value="#{tournagefilmcourtController.selected.dateDebutEvenement}" title="#{bundle.EditTournagefilmcourtTitle_dateDebutEvenement}" required="true" requiredMessage="#{bundle.EditTournagefilmcourtRequiredMessage_dateDebutEvenement}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditTournagefilmcourtLabel_dateFinEvenement}" for="dateFinEvenement" />
+                        <p:calendar id="dateFinEvenement" pattern="MM/dd/yyyy" value="#{tournagefilmcourtController.selected.dateFinEvenement}" title="#{bundle.EditTournagefilmcourtTitle_dateFinEvenement}" required="true" requiredMessage="#{bundle.EditTournagefilmcourtRequiredMessage_dateFinEvenement}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditTournagefilmcourtLabel_cadre}" for="cadre" />
+                        <p:inputText id="cadre" value="#{tournagefilmcourtController.selected.cadre}" title="#{bundle.EditTournagefilmcourtTitle_cadre}" required="true" requiredMessage="#{bundle.EditTournagefilmcourtRequiredMessage_cadre}"/>
+                        <p:outputLabel value="#{bundle.EditTournagefilmcourtLabel_lieu}" for="lieu" />
+                        <p:inputText id="lieu" value="#{tournagefilmcourtController.selected.lieu}" title="#{bundle.EditTournagefilmcourtTitle_lieu}" required="true" requiredMessage="#{bundle.EditTournagefilmcourtRequiredMessage_lieu}"/>
+                        <p:outputLabel value="#{bundle.EditTournagefilmcourtLabel_adresse}" for="adresse" />
+                        <p:inputText id="adresse" value="#{tournagefilmcourtController.selected.adresse}" title="#{bundle.EditTournagefilmcourtTitle_adresse}" required="true" requiredMessage="#{bundle.EditTournagefilmcourtRequiredMessage_adresse}"/>
+                        <p:outputLabel value="#{bundle.EditTournagefilmcourtLabel_arrondissement}" for="arrondissement" />
+                        <p:inputText id="arrondissement" value="#{tournagefilmcourtController.selected.arrondissement}" title="#{bundle.EditTournagefilmcourtTitle_arrondissement}" />
+                        <p:outputLabel value="#{bundle.EditTournagefilmcourtLabel_adresseComplete}" for="adresseComplete" />
+                        <p:inputText id="adresseComplete" value="#{tournagefilmcourtController.selected.adresseComplete}" title="#{bundle.EditTournagefilmcourtTitle_adresseComplete}" />
+                        <p:outputLabel value="#{bundle.EditTournagefilmcourtLabel_geoCoordinates}" for="geoCoordinates" />
+                        <p:inputText id="geoCoordinates" value="#{tournagefilmcourtController.selected.geoCoordinates}" title="#{bundle.EditTournagefilmcourtTitle_geoCoordinates}" />
+                             </p:panelGrid>
+                    <p:commandButton actionListener="#{tournagefilmcourtController.update}" value="#{bundle.Save}" update="display,:TournagefilmcourtListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TournagefilmcourtEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TournagefilmcourtEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

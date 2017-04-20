@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/templateadmin.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="La Planète Des Films : Gestion Des Films"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="TournagefilmcourtListForm">
+              
+                    <p:dataTable id="datalist" value="#{tournagefilmcourtController.items}" var="item"
+                                 selectionMode="single" selection="#{tournagefilmcourtController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idTournagefilm}"
+                                 rows="7"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTournagefilmcourtTitle_titre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titre}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTournagefilmcourtTitle_realisateur}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.realisateur}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTournagefilmcourtTitle_dateDebutEvenement}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateDebutEvenement}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTournagefilmcourtTitle_dateFinEvenement}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateFinEvenement}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTournagefilmcourtTitle_cadre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cadre}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTournagefilmcourtTitle_lieu}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.lieu}"/>
+                        </p:column>
+                              <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTournagefilmcourtTitle_adresseComplete}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.adresseComplete}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTournagefilmcourtTitle_arrondissement}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.arrondissement}"/>
+                        </p:column>
+
+
+
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{tournagefilmcourtController.prepareCreate}" update=":TournagefilmcourtCreateForm" oncomplete="PF('TournagefilmcourtCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":TournagefilmcourtViewForm" oncomplete="PF('TournagefilmcourtViewDialog').show()" disabled="#{empty tournagefilmcourtController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":TournagefilmcourtEditForm" oncomplete="PF('TournagefilmcourtEditDialog').show()" disabled="#{empty tournagefilmcourtController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{tournagefilmcourtController.destroy}" update=":growl,datalist" disabled="#{empty tournagefilmcourtController.selected}"/>
+                            <p:button id="search" icon="ui-icon-search" value="rechercher" outcome="ResultatLieuxAdmin"/> 
+                            </f:facet>
+                    </p:dataTable>
+
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>
